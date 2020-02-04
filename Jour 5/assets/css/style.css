@@ -40,3 +40,7 @@ footer p
     justify-content: space-around;
     margin: 0% 9%;
 }
+.colonne p
+{
+    box-shadow: 10px 5px 5px black;
+}
