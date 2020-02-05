@@ -14,5 +14,25 @@ nav a
 }
 .logo 
 {
-    width: 100px;
+    width: 108px;
+}
+h2
+{
+    text-align: center;
+    margin-top: 28px;
+}
+.ligne 
+{
+    display: flex;
+    justify-content: space-around;
+    margin: 0% 9%;
+}
+p
+{
+    text-align: center;
+}
+section img 
+{ 
+    max-width: 75%;
+    margin: 0 auto;
 }
