@@ -1,0 +1,42 @@
+.logo
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+    margin-top: -42px;
+    margin-bottom: -82px;
+}
+nav 
+{
+    font-size: 28px;
+    text-align: center;
+}
+nav a
+{
+    margin: 28px;
+    padding-top: 28px;
+}
+h2
+{
+    margin-top: 82px;
+    font-size: 28px;
+    text-decoration: underline;
+    text-align: center;
+}
+ul li
+{
+    font-size: 19px;
+}
+header
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+}
+header:hover
+{
+    opacity:1;
+    height:60px;
+}
