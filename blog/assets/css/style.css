@@ -24,7 +24,7 @@ html, body {
     position: relative;
     float: right;
     margin-right: 10px;
-    margin-top: 5px;
+    margin-top: -15px;
     cursor: pointer;
 }
 .toggle_btn span {
@@ -78,8 +78,10 @@ html, body {
     margin-top: -20px;
 }
 h2 {
-    font-family: sans-serif;
-    text-align: center;
+    -moz-box-shadow:10px 10px 5px #27ae60;
+-webkit-box-shadow:10px 10px 5px #27ae60;
+box-shadow:10px 10px 5px #27ae60;
+text-align: center;
 }
 #logo img {
     padding-left: 22px;
