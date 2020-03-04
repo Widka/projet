@@ -54,7 +54,7 @@ html, body {
     left: 0;
 }
 .menu {
-    height: 300px;
+    height: 350px;
     background-color: #27ae60;
     width: 175px;
 }
@@ -92,4 +92,22 @@ p {
     text-align: right;
     font-family: sans-serif;
     font-style: italic;
+}
+.admin {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.admin > * {
+    margin:0.25rem;
+    padding:0.25rem;
+}
+* {
+    box-sizing: border-box;
+}
+input {
+        width: 150px;
+        padding: 4px;
+        vertical-align: 100%;
+        text-align: center;
 }

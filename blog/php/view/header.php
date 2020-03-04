@@ -18,6 +18,7 @@
             <a href="index.php">Accueil</a>
             <a href="news.php">News</a>
             <a href="contact.php">Contact</a>
+            <a href="admin.php">Admin</a>
         </div>
     </header>
     <main>
