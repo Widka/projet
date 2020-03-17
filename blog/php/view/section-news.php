@@ -6,7 +6,7 @@
 $requeteSQL = 
 <<<CODESQL
 
-SELECT * FROM articles
+SELECT * FROM `articles`
 ORDER BY datePublication DESC
 
 CODESQL;
@@ -15,13 +15,14 @@ $tabAssoColonneValeur = [];
 
 require_once "php/model/envoyer-sql.php";
 
-$tabLigne= $pdoStatement->fetchAll();
+$tabLigne = $pdoStatement->fetchAll();
 
 foreach($tabLigne as $tabAsso)
 {
 
 extract($tabAsso);
 
+echo
 <<<CODEHTML
  
 <article class="$categorie">
