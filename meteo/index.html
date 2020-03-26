@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Méteo</title>
+    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
+</head>
+<body>
+    
+    <script>
+        // step 1 : obtenir son adresse ip
+        fetch("https://api.ipify.org?format=json")
+        // version javascript
+        .then(function(response){
+            return response.json();
+        })
+        // version ES6 (fonctions fléchées)
+        // si on a qu'un seul paramètre a passer à la fonction on peut se passer des parenthèses.
+        // Elles sont obligatoires s'il y'en as plusieurs
+        // si la fonction n'éxécute qu'une seule instruction, on peut aussi se passer des {}.
+        // Sinon elle reste obligatoire
+        // dans le code à la ligne suivante le return est implicite, on n'as pas besoin de le spécifier
+        // .then((response) => response.json())
+        .then(function(data){
+            const ip = data.ip
+        
+        // step 2 : récupérer un nom de ville en fonction de l'adresse ip obtenue
+        // utilisation des backticks string litterals
+            // fetch(`http://api.ipstack.com/${ip}?access_key=30c029b1d2a8dcdcdf26ac5a0e07b914`)
+
+            fetch("http://api.ipstack.com/" + ip + "?access_key=30c029b1d2a8dcdcdf26ac5a0e07b914")
+            .then(function(response){
+                return response.json();
+            })
+            .then(function(data){
+                let city = data.city // ici on va récupérer Marseille 01 qu'on va transformer en marseille
+                // on ne doit conserver que le nom de la ville
+                // on dois passer la chaîne de caractères en minuscules
+                city = city.split(" ")[0].toLowerCase();
+                
+        // step 3 : récupérer les conditions météo de la ville
+                fetch(`http://api.openweathermap.org/data/2.5/weather?q=marseille&appid=8e602b9ea28ed4f9f8fc97a5f6d1105c&lang=fr&units=metric`)
+                .then(function(response){
+                    return response.json();
+                })
+                .then(function(data){
+                    let condition = data.weather[0].description
+                    let temperature = data.main.temp
+                    console.log(data);
+
+                })
+            });
+        });
+    </script>
+    
+</body>
+</html>
