@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
 </head>
 <body>
-    
+    <h1><span id="ville"></span></h1>
+    <p><span id="temperature"></span></p>
+    <h2></h2> <i class="wi wi-owm-500"></i>
+    &copy;
     <script>
         // step 1 : obtenir son adresse ip
         fetch("https://api.ipify.org?format=json")
@@ -46,10 +49,32 @@
                     return response.json();
                 })
                 .then(function(data){
-                    let condition = data.weather[0].description
-                    let temperature = data.main.temp
-                    console.log(data);
+                    // let condition = data.weather[0].description
+                    // let temperature = data.main.temp
+                    // console.log(data);
+                    const city = document.querySelector("h1")
+                    const temp = document.querySelector("p")
+                    const description = document.querySelector("h2")
+                    const conditions = document.querySelector("i");
 
+                    // ensuite j'injecte ces valeurs dans le DOM
+                    // par ex : je vais chercher la valeur de la propriété temp de la propriété main de l'objet data
+
+                    const ville = data.name;
+                    const temperature = Math.round(data.main.temp);
+                    const condition = data.weather[0].description;
+                    const icon = data.weather[0].id;
+
+
+                    city.innerText += ville;
+                    temp.innerText += temperature + "°";
+                    description.innerText += condition;
+                    // conditions.classList.add(`wi-owm-${icon}`);
+                    const conditionsClass = "wi-owm-" + icon; // va afficher wi-owm-500
+                  // méthode ES6 d'interpolation des variables dans une chaîne de caractères
+                  //  const conditionsClass = `wi-owm-${icon}`
+                  conditions.classList.add(conditionsClass);
+                    console.log(data)
                 })
             });
         });
