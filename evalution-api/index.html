@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API News</title>
+</head>
+<body>
+    <h1><span id="titre"></span></h1>
+    <p><span id="contenu"></span></p>
+    <div><span id="autheur"></span></div>
+    <button id="Next">Changer d'article</button>
+    
+<script>
+const nextArt = document.querySelector("#Next");
+nextArt.addEventListener("click", function() {
+    // step 1 : Obtenir les infos
+var url = 'http://newsapi.org/v2/top-headlines?' +
+          'country=fr&' +
+          'apiKey=72dbeeea406a42cf93fe8ffebd7ee986';
+var req = new Request(url);
+    fetch(req)
+    .then(function(response) {
+        return response.json();
+    })
+    // step 2 : récupérer les infos
+    
+    .then(function(data){
+        
+        const articles = data.articles
+        const titre = data.articles[0].title
+        const contenu = data.articles[0].content
+        const autheur = data.articles[0].author
+
+        
+        // console.log(data);
+
+        const title = document.querySelector("h1");
+        const content = document.querySelector("p");
+        const author = document.querySelector("div");
+        
+        for(var a=0; a < articles[a].length; a++)
+        articles[a].innerHTML += 
+        `
+            <h1>${articles[a].titre}</h1>
+            <p>${articles[a].contenu}</p>
+            <div>${articles[a].autheur}</div>
+            
+        `
+
+        console.log(articles)
+        title.innerText += titre;
+        content.innerText += contenu;
+        author.innerText += autheur;
+        
+
+        
+    });
+});
+
+</script>
+    
+</body>
+</html>
