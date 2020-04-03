@@ -33,7 +33,7 @@ class Database
         {
             // on va stocker dans la propriété de classe conn une nouvelle instance de l'objet PDO
             $this->conn = new PDO($this->dsn, $this->username, $this->pwd, $this->options);
-            echo 'Connexion établie';
+            //echo 'Connexion établie';
         }
         catch (PDOException $error)
         {
