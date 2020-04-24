@@ -8,7 +8,7 @@ require_once 'data/post.php';
 try {
     $db = new PDO('mysql:host=localhost;dbname=posts;charset=utf8', 'root', '');
     // debug only
-    echo 'Connected to db dude !';
+    // echo 'Connected to db dude !';
 } catch (PDOException $error) {
     throw new PDOException('Failed to connect to database', $error->getMessage());
 };

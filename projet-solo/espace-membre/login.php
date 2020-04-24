@@ -10,33 +10,35 @@ if (isset($_SESSION['userEmail'])) {
 if (isset($_POST['submit'])) {
  
     $email = htmlspecialchars($_POST['email']);
-    $password = sha1($_POST['password']);
- 
-    if ((!empty($email)) && (!empty($password))) {
- 
-        $database = getPDO();
-        $requestUser = $database->prepare("SELECT * FROM users WHERE user_email = ? AND user_password = ?");
-        $requestUser->execute(array($email, $password));
-        $userCount = $requestUser->rowCount();
-        if ($userCount == 1) {
-           
-            $userInfo = $requestUser->fetch();
-            $_SESSION['userID'] = $userInfo['user_id'];
-            $_SESSION['userPseudo'] = $userInfo['user_pseudo'];
-            $_SESSION['userEmail'] = $userInfo['user_email'];
-            $_SESSION['userPassword'] = $userInfo['user_password'];
-            $_SESSION['userAdmin'] = $userInfo['isadmin'];
-            $_SESSION['userBan'] = $userInfo['isban'];
-            $_SESSION['userRegisterDate'] = $userInfo['registerdate'];
-            $succesMessage = 'Bravo, vous êtes maintenant connecté !';
-            header('refresh:3;url=index.php');
- 
+    $password = $_POST['password'];
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    $PassVerified = password_verify($_POST['password'], $hashedPassword);
+        
+        if ((!empty($email)) && (!empty($password))) {
+    
+            $database = getPDO();
+            $requestUser = $database->prepare("SELECT * FROM users WHERE user_email = ? AND user_password = ?");
+            $requestUser->execute(array($email, $password));
+            $userCount = $requestUser->rowCount();
+            if ($userCount == 1) {
+            
+                $userInfo = $requestUser->fetch();
+                $_SESSION['userID'] = $userInfo['user_id'];
+                $_SESSION['userPseudo'] = $userInfo['user_pseudo'];
+                $_SESSION['userEmail'] = $userInfo['user_email'];
+                $_SESSION['userPassword'] = $userInfo['user_password'];
+                $_SESSION['userAdmin'] = $userInfo['isadmin'];
+                $_SESSION['userBan'] = $userInfo['isban'];
+                $_SESSION['userRegisterDate'] = $userInfo['registerdate'];
+                $succesMessage = 'Bravo, vous êtes maintenant connecté !';
+                header('refresh:3;url=index.php');
+    
+            } else {
+                $errorMessage = 'Email ou mot de passe incorrect!';
+            }
         } else {
-            $errorMessage = 'Email ou mot de passe incorrect!';
+            $errorMessage = 'Veuillez remplir tous les champs..';
         }
-    } else {
-        $errorMessage = 'Veuillez remplir tous les champs..';
-    }
 }
  
 ?>

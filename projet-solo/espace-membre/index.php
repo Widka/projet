@@ -5,9 +5,9 @@ include 'includes/database.php';
  
 if (isset($_POST['submit'])) {
  
-    $oldPassword = sha1($_POST['old_password']);
-    $newPassword = sha1($_POST['password']);
-    $confirmNewPassword = sha1($_POST['confirm_password']);
+    $oldPassword = $_POST['old_password'];
+    $newPassword = $_POST['password'];
+    $confirmNewPassword = $_POST['confirm_password'];
  
     if ($_SESSION['userPassword'] == $oldPassword) {
         if ($newPassword == $confirmNewPassword) {
