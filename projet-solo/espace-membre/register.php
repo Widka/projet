@@ -15,7 +15,7 @@ if (isset($_POST['submit'])){
     $password_confirm = $_POST['password_confirm'];
     date_default_timezone_set('Europe/Paris');
     $date = date('d/m/Y à H:i:s');
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    $hash = password_hash($password, PASSWORD_DEFAULT);
  
     if ((!empty($pseudo)) && (!empty($email)) && (!empty($password_confirm)) && (!empty($password))) {
         if (strlen($pseudo) <= 16) {
@@ -31,7 +31,7 @@ if (isset($_POST['submit'])){
                             $insertMember->execute([
                                 $pseudo,
                                 $email,
-                                $hashedPassword,
+                                $hash,
                                 0,
                                 0,
                                 $date
