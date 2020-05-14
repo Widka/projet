@@ -2,6 +2,7 @@
  
 session_start();
 include 'includes/database.php';
+
  
 if (isset($_SESSION['userEmail'])) {
     header('Location:index.php');
@@ -11,15 +12,15 @@ if (isset($_POST['submit'])) {
  
     $email = htmlspecialchars($_POST['email']);
     $password = $_POST['password'];
-    $hash = password_hash($password, PASSWORD_DEFAULT);
-    $passVerif = password_verify($password, $hash);
-        if($passVerif){
+    
+    
+        if(password_verify ($hash, $password)){
             
             if ((!empty($email)) && (!empty($password))) {
         
                 $database = getPDO();
                 $requestUser = $database->prepare("SELECT * FROM users WHERE user_email = ? AND user_password = ?");
-                $requestUser->execute(array($email, $passVerif));
+                $requestUser->execute([$email, $password]);
                 $userCount = $requestUser->rowCount();
                 if ($userCount == 1) {
                 
