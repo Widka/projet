@@ -15,13 +15,13 @@ if (isset($_POST['submit'])){
     $password_confirm = $_POST['password_confirm'];
     date_default_timezone_set('Europe/Paris');
     $date = date('d/m/Y à H:i:s');
-    $hash = password_hash($password, PASSWORD_DEFAULT);
+    
  
     if ((!empty($pseudo)) && (!empty($email)) && (!empty($password_confirm)) && (!empty($password))) {
         if (strlen($pseudo) <= 16) {
             if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 if ($password == $password_confirm) {
- 
+                    $hash = password_hash($password, PASSWORD_DEFAULT);
                     $database = getPDO();
                     $rowEmail = countDatabaseValue($database, 'user_email', $email);
                     if ($rowEmail == 0) {
