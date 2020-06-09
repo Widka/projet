@@ -1,0 +1,42 @@
+section img 
+{ 
+    max-width: 75%;
+    margin: 0 auto;
+}
+h1 
+{ 
+    text-align: center;
+}
+section 
+{
+    text-align: center;
+}
+nav
+{
+    text-align: center;
+}
+nav a
+{
+    margin: 85px;
+    font-size: 24px;
+}
+footer p
+{
+    text-align: end;
+}
+.banniere 
+{
+    width: 100%;
+}
+.banniere img 
+{
+    object-fit: cover;
+    width: 100%;
+    max-height: 88px;
+}
+.ligne 
+{
+    display: flex;
+    justify-content: space-around;
+    margin: 0% 9%;
+}
