@@ -15,18 +15,18 @@ if (isset($_POST['submit'])) {
     
         
             
-        if ((!empty($email)) && (!empty($password))) {
+    if ((!empty($email)) && (!empty($password))) {
 
             
 
-                $database = getPDO();
-                $requestUser = $database->prepare("SELECT * FROM users WHERE user_email = ?");
-                $requestUser->execute([$email]);
-                $userCount = $requestUser->rowCount();
-                if ($userCount == 1) {
+        $database = getPDO();
+        $requestUser = $database->prepare("SELECT * FROM users WHERE user_email = ?");
+        $requestUser->execute([$email]);
+        $userCount = $requestUser->rowCount();
+        if ($userCount == 1) {
                 
-                    $userInfo = $requestUser->fetch();
-                    if ($userInfo && password_verify($password, $userInfo['user_password']))
+            $userInfo = $requestUser->fetch();
+            if ($userInfo && password_verify($password, $userInfo['user_password']))
                     {
                     $_SESSION['userID'] = $userInfo['user_id'];
                     $_SESSION['userPseudo'] = $userInfo['user_pseudo'];
@@ -37,16 +37,15 @@ if (isset($_POST['submit'])) {
                     $_SESSION['userRegisterDate'] = $userInfo['registerdate'];
                     $succesMessage = 'Bravo, vous êtes maintenant connecté !';
                     header('refresh:3;url=index.php');
-                    } else {
-                        $errorMessage = 'Mauvais mot de passe';
-                    }
-                } else {
-                    $errorMessage = 'Email incorrect!';
-                }
-             
+            } else {
+                $errorMessage = 'Mauvais mot de passe';
+            }        
         } else {
-                $errorMessage = 'Veuillez remplir tous les champs..';
+            $errorMessage = 'Email incorrect!';
         }
+    } else {
+        $errorMessage = 'Veuillez remplir tous les champs..';
+    }
         
 } 
 ?>

@@ -1,0 +1,20 @@
+<script>
+
+function isPalindrome(str) {
+    reverseText = str.split("").reverse().join("");
+
+if (str === reverseText)
+return true;
+else 
+return false;
+}
+console.log (isPalindrome("lol"));
+</script>
+
+/*
+function isPalindrome(str)
+{
+    const reversedString = str.trim().split("").reverse().join("").toLowerCase()
+}
+return str.toLowerCase() === reversedString
+}

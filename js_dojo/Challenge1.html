@@ -1,0 +1,20 @@
+<script>
+function reverseString(str) {
+    return str.split("").reverse().join("");
+}
+text = reverseString("hello world");
+console.log(text);
+</script>
+
+// .trim() si l'on veut enlever un espace ou plusieurs 
+
+/*
+function reverseString(str)
+{
+    var newString = ""
+    for(i = str.trim().length; i >= 0; i--)
+    {
+        newString += str[i]
+    }
+    return newString
+}
