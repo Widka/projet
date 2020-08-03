@@ -32,8 +32,6 @@ if (isset($_POST['submit'])) {
                     $_SESSION['userPseudo'] = $userInfo['user_pseudo'];
                     $_SESSION['userEmail'] = $userInfo['user_email'];
                     $_SESSION['userPassword'] = $userInfo['user_password'];
-                    $_SESSION['userAdmin'] = $userInfo['isadmin'];
-                    $_SESSION['userBan'] = $userInfo['isban'];
                     $_SESSION['userRegisterDate'] = $userInfo['registerdate'];
                     $succesMessage = 'Bravo, vous êtes maintenant connecté !';
                     header('refresh:3;url=index.php');

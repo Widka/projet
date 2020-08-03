@@ -13,8 +13,8 @@ if (isset($_POST['submit'])){
     $email = htmlspecialchars($_POST['email']);
     $password = $_POST['password'];
     $password_confirm = $_POST['password_confirm'];
-    date_default_timezone_set('Europe/Paris');
-    $date = date('d/m/Y à H:i:s');
+    // date_default_timezone_set('Europe/Paris'); Erreur rencontré, car mysql enregistre la date sur heure locale du serveur
+    $date = date('Y-m-d H:i:s');
     
  
     if ((!empty($pseudo)) && (!empty($email)) && (!empty($password_confirm)) && (!empty($password))) {
@@ -27,22 +27,20 @@ if (isset($_POST['submit'])){
                     if ($rowEmail == 0) {
                         $rowPseudo = countDatabaseValue($database, 'user_pseudo', $pseudo);
                         if ($rowPseudo == 0) {
-                            $insertMember = $database->prepare("INSERT INTO users(user_pseudo, user_email, user_password, isadmin, isban, registerdate) VALUES(?, ?, ?, ?, ?, ?)");
+                            $insertMember = $database->prepare("INSERT INTO users(user_pseudo, user_email, user_password, registerdate) VALUES(?, ?, ?, ?)");
                             $insertMember->execute([
                                 $pseudo,
                                 $email,
                                 $hash,
-                                0,
-                                0,
                                 $date
                             ]);
                             $succesMessage = "Votre compte à bien été créé !";
                             header('refresh:3;url=login.php');
                         } else {
-                            $errorMessage = 'Ce pseudo est déjà utilisée..';
+                            $errorMessage = 'Cet email est déjà utilisée..';
                         }
                     } else {
-                        $errorMessage = 'Cette email est déjà utilisée..';
+                        $errorMessage = 'Ce pseudo est déjà utilisée..';
                     }
                 } else {
                     $errorMessage = 'Les mots de passes ne correspondent pas...';

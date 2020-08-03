@@ -41,14 +41,10 @@ if (isset($_POST['submit'])) {
             <h3>Espace Client - Accueil</h3>
             <a href="login.php">Se connecter</a>
             <a href="register.php">S'inscrire</a>
-            <a href="admin.php">Admin</a>
         </div>
         <div class="form-div text-center">
                 <h3>Information</h3>
                 <?php if (isset($_SESSION['userEmail'])) { ?>
-                    <?php if(($_SESSION['userBan'] != null) && ($_SESSION['userBan'] == 1)) {?>
-                        <p style="color: red;"><b>VOUS ETES BANNI</b></p>
-                    <?php } else { ?>
                         <p>Bonjour, <?= $_SESSION['userPseudo'] ?> !</p>
                         <p>Email : <?= $_SESSION['userEmail'] ?></p>
                         <p>Inscrit le <?= $_SESSION['userRegisterDate'] ?></p>
@@ -71,7 +67,7 @@ if (isset($_POST['submit'])) {
                             <input type="submit" name="submit" value="Valider">
                         </form>
                        
-                    <?php } } else { ?>
+                    <?php } else { ?>
                     <p>Vous n'êtes pas connecté !</p>
                 <?php } ?>
         </div>
